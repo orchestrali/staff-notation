@@ -1,0 +1,266 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Staff Notation</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A cool thing made with Glitch">
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- import the webpage's client-side javascript file -->
+    
+    
+  </head>
+  <body>
+    <header>
+      <h1>Staff Notation</h1>
+    </header>
+
+    <main>
+      
+      <div id="systemoptions">
+        <ul>
+          <li><label for="numsystems">Number of systems:</label><input id="numsystems" name="numsystems" type="number" min="1" step="1" value="1" /></li>
+          <li><label for="numstaves">Number of staves:</label><input id="numstaves" name="numstaves" type="number" min="1" step="1" value="1" /></li>
+          <li><label for="syswidth">System width:</label><input id="syswidth" name="syswidth" type="number" min="200" step="5" value="400" /></li>
+        </ul>
+      </div>
+      
+      <div>
+        <button type="button" id="instruct">
+          Click here to see instructions
+        </button>
+      </div>
+      
+      <div id="buttons">
+        
+        
+          <button type="button" id="treble">treble clef</button>
+        <button type="button" id="bass">
+          bass clef
+        </button>
+        <button type="button" id="cclef">
+          C clef
+        </button>
+          <button type="button" id="nums" class="has-dropdown">
+            meter signs
+            <div class="dropdown">
+              <ul id="timesig-numbers">
+                <li id="timesig1">1</li>
+                <li id="timesig2">2</li>
+                <li id="timesig3">3</li>
+                <li id="timesig4">4</li>
+                <li id="timesig5">5</li>
+                <li id="timesig6">6</li>
+                <li id="timesig7">7</li>
+                <li id="timesig8">8</li>
+                <li id="timesig9">9</li>
+                <li id="timesig0">0</li>
+                <li id="timesigc">c</li>
+                <li id="timesigcutc">C</li>
+              </ul>
+            </div>
+          </button>
+          <button type="button" id="sharp">sharp</button>
+          <button type="button" id="flat">flat</button>
+          <button type="button" id="natural">natural</button>
+          <button type="button" id="note1">solid notehead <img src="https://cdn.glitch.com/ba66e22e-49d8-46fa-abb2-cdd3790b12e6%2Fnote1.png?v=1584922134173" /></button>
+          <button type="button" id="note2">
+            half-note notehead <img src="https://cdn.glitch.com/ba66e22e-49d8-46fa-abb2-cdd3790b12e6%2Fnote2.png?v=1584922129671" />
+          </button>
+          <button type="button" id="note3">
+            whole note <img src="https://cdn.glitch.com/ba66e22e-49d8-46fa-abb2-cdd3790b12e6%2Fnote3.png?v=1584922120000" />
+          </button>
+        <button type="button" id="eighthrest">
+          eighth rest
+        </button>
+        <button type="button" id="quarterrest">
+          quarter rest
+        </button>
+        <button type="button" id="rectrest">
+          half/whole rest
+        </button>
+        <button type="button" id="ledger">ledger line</button>
+        <button type="button" id="dot">dot</button>
+        <button type="button" id="barline">
+            barline
+          </button>
+        <button type="button" id="otherbarlines" class="has-dropdown">
+          other barlines
+          <div class="dropdown">
+            <ul>
+              <li id="barfinal">final</li>
+              <li id="barstartrep">start repeat</li>
+              <li id="barendrep">end repeat</li>
+              <li id="barbothrep">start & end repeat</li>
+            </ul>
+          </div>
+        </button>
+          <button type="button" id="eraser">
+            eraser
+          </button>
+          
+          <button type="button" id="select">
+            select notes to add stem/beam
+          </button>
+          <button type="button" id="stemup" class="disabled">
+            stem up
+          </button>
+          <button type="button" id="stemdown" class="disabled">
+            stem down
+          </button>
+          <button type="button" id="flagup" class="disabled">
+            stem up with flag
+          </button>
+          <button type="button" id="flagdown" class="disabled">
+            stem down with flag
+          </button>
+          <button type="button" id="beamabove" class="disabled">beam above</button>
+        <button type="button" id="beambelow" class="disabled">
+          beam below
+        </button>
+        <button type="button" id="increasebeam" class="disabled">
+          increase beam
+        </button>
+        <button type="button" id="tieabove" class="disabled">
+          tie above
+        </button>
+        <button type="button" id="tiebelow" class="disabled">
+          tie below
+        </button>
+        
+          <!--<button type="button" id="flag" class="disabled">flag</button>-->
+          
+        
+      </div>
+      <button type="button" id="numbeams" class="has-dropdown">
+        Num beams/flags: <span>1</span>
+        <div class="dropdown">
+          <ul>
+            <li class="selected">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+          </ul>
+        </div>
+      </button>
+      <button type="button" id="noteheadlock">
+        Notehead lock on
+      </button>
+      <button type="button" id="btnSave">
+        Save results (svg)
+      </button>
+      <div id="container" class="hasSVG">
+        <svg id="system0" class="system" width="500" height="200" xmlns="http://www.w3.org/2000/svg">
+
+
+
+
+          <g style="stroke:white; stroke-width:2; fill:black;" class="stafflines">
+            <rect x="1" y="79" width="400" height="3" />
+            <rect x="1" y="89" width="400" height="3" />
+            <rect x="1" y="99" width="400" height="3" />
+            <rect x="1" y="109" width="400" height="3" />
+            <rect x="1" y="119" width="400" height="3" />
+          </g>
+
+
+
+          <g class="clefs" style="stroke:black; stroke-width:1; fill:black; ">
+
+          </g>
+
+          <g class="timesigs" style="font-family:Helsinki; font-size:28pt; stroke:black; stroke-width:1; fill:black; " ></g>
+
+          <g style="stroke:black; stroke-width:1; fill:black; fill-rule:evenodd" class="notes">
+
+          </g>
+          <g class="stems" style="stroke:black; stroke-width:1.5; fill:none" >
+
+          </g>
+          <g class="barlines" style="stroke:black; stroke-width:1;">
+
+          </g>
+
+
+
+        </svg>
+        
+      </div>
+
+      
+      
+      
+
+      
+    </main>
+
+    <footer>Made with <a href="https://glitch.com">Glitch</a>!</footer>
+
+    <!-- include the Glitch button to show what the webpage is about and
+          to make it easier for folks to view source and remix -->
+    <div class="glitchButton" style="position:fixed;top:2em;right:20px;"></div>
+    <div id="dialogUnderlay"></div>
+    <div id="instructions" class="dialog">
+      <p>
+        This website is for creating staff (music) notation in a fashion that resembles pencil and paper rather than other types of music notation software.
+      </p>
+      <p>
+        To change the appearance of the staff itself, adjust the numbers in the boxes toward the top.
+      </p>
+      <p>
+        To add most elements to the staff, click on one of the blue buttons, then click on the staff where you want the thing to go. The buttons for "meter signs" and "other barlines" have dropdown menus—to add one of the options select something from the menu, click the button again, then click on the staff. To add a dot (rhythm dot), click on the note or rest that you want it to attach to.
+      </p>
+      <p>
+        If you're on a touchscreen device, for many of these objects you can tap the staff, then drag up or down to set the position you want.
+      </p>
+      <p>
+        To add stems or beams, click "select notes to add stem/beam", click on the noteheads you'd like to add stems or a beam to (they should turn blue when selected), then click the button you want—stem up, stem down, stem up with flag, stem down with flag, beam above, beam below.
+      </p>
+      <p>
+        <button type="button" class="cancel">
+          OK
+        </button>
+      </p>
+    </div>
+    <div id="removesystem" class="dialog">
+      <p>
+        Click 'OK' to remove the last <span>system</span>, including anything on the <span>system</span>.
+      </p>
+      <p>
+        <button type="button" id="removesystemOK">OK</button>
+        <button type="button" class="cancel">Cancel</button>
+      </p>
+    </div>
+    <div id="removestaff" class="dialog">
+      <p>
+        Click 'OK' to remove the last <span>staff</span> from each system, including anything on the <span>staff</span>.
+      </p>
+      <p>
+        <button type="button" id="removestaffOK">OK</button>
+        <button type="button" class="cancel">Cancel</button>
+      </p>
+    </div>
+    <div id="shortenstaff" class="dialog">
+      <p>
+        Click 'OK' to make all the systems shorter—will remove anything on the right end of each system.
+      </p>
+      <p>
+        <button type="button" id="shortenstaffOK">OK</button>
+        <button type="button" class="cancel">Cancel</button>
+      </p>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="jquery.centre.js"></script>
+    <script src="jquery.svg.js"></script>
+    <script src="jquery.svgdom.js"></script>
+    <script src="client.js"></script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+<svg width="30" height="30"  xmlns="http://www.w3.org/2000/svg">
+	<g stroke="black" stroke-width="1" fill="black">
+		<path d="M 11.5 11.25
+             l 2 -5
+             h 3
+             v 17
+             q 0 .5 2 1
+             v 0.5
+             h -7
+             v -0.5
+             q 2 -.5 2 -1
+             v -17"/>
+
+	</g>
+</svg>

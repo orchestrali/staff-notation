@@ -1,0 +1,15 @@
+<svg width="30" height="50" xmlns="http://www.w3.org/2000/svg">
+  <g style="stroke:black; stroke-width:1; fill:black; fill-rule:evenodd;">
+    
+    <path d="M 16 5
+             v 40
+             h 2
+             v -40
+             h -2.5
+             m 6 0
+             v 40" />
+    <circle cx="27" cy="20" r="2" />
+    <circle cx="27" cy="30" r="2" />
+  </g>
+
+</svg>
