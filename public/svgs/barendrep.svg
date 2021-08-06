@@ -1,0 +1,14 @@
+<svg width="20" height="50" xmlns="http://www.w3.org/2000/svg">
+  <g style="stroke:black; stroke-width:1; fill:black; fill-rule:evenodd;">
+    <circle cx="7" cy="20" r="2" />
+    <circle cx="7" cy="30" r="2" />
+    <path d="M 12 5
+             v 40
+             m 4 -40
+             v 40
+             h 2
+             v -40
+             h -2" />
+  </g>
+
+</svg>

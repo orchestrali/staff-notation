@@ -1,0 +1,13 @@
+<svg width="22" height="45" xmlns="http://www.w3.org/2000/svg">
+  <g style="stroke:black; stroke-width:1; fill:black; fill-rule:evenodd;">
+    <path d="M 5 5
+               l 6 8
+               c -4 7 -4 7 2 15
+               l -10 -11
+               c 6 -7 5 -7 2 -12
+               m 8 23
+               a 4.0311 5 -55 0 0 -4 7
+               a 4.032 5 -52 0 1 0 -11"/>
+  </g>
+
+</svg>

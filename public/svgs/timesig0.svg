@@ -1,0 +1,11 @@
+<svg width="30" height="30"  xmlns="http://www.w3.org/2000/svg">
+	<g stroke="black" stroke-width="1" fill="black">
+		<path d="M 18.5 5.5
+             c -8 -1 -8 20 0 19
+           c 8 1 8 -20 0 -19
+           m 0 .5
+           c 4 -1 4 19 0 18
+           c -4 1 -4 -19 0 -18" />
+
+	</g>
+</svg>
