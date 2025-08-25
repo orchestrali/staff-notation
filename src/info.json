@@ -87,6 +87,25 @@
     ],
     "parent": " .notes"
   },
+  "doublesharp": {
+    "coord": " 10 15",
+    "x": 11,
+    "y": -5,
+    "elements": [
+      {"type": "path", "x": 0, "y": 0, "d": " h 4 v 3 l 4 4 h 3 v 4 h -4 v -3 l -4 -4 h -3 v -4 m 11 0 h -4 v 3 l -4 4 h -3 v 4 h 4 v -3 l 4 -4 h 3 v -4", "other": {"stroke": "none"}}
+    ],
+    "parent": " .notes"
+  },
+  "doubleflat": {
+    "coord": " 10.5 22",
+    "x": 11,
+    "y": -11.5,
+    "elements": [
+      {"type": "path", "x": 0, "y": 0, "d": " v 23.5 c 6 -4 6 -14 0 -10", "other": {"fill": "none"}},
+      {"type": "path", "x": 5, "y": 0, "d": " v 23.5 m 0 -10 c 5 -4 8 0 5 6 l -5 4 c 6 -4 6 -13 0 -10"}
+    ],
+    "parent": " .notes"
+  },
   "flat": {
     "urlend": "v=1584922139657)",
     "coord": " 10.5 22",
@@ -282,7 +301,7 @@
     "y": 3.25,
     "elements": [
       {"type": "path", "x": 0, "y": 0, "d": " a 2.2 2 0 1 0 3 2 q 0 -2.5 -5.5 -3.3 c -11 0 -10.3 17.3 0 17.3 c -5 -1 -7 -17.5 1 -17"},
-      {"type": "path", "x": -3.5, "y": 16.4, "d": "q 5 1 7 -4.5 l -.5 0 q -2 3.5 -6 3.5", "other": {"stroke": "none"}}
+      {"type": "path", "x": -3.5, "y": 16.4, "d": " q 5 1 7 -4.5 l -.5 0 q -2 3.5 -6 3.5", "other": {"stroke": "none"}}
     ],
     "parent": " .timesigs",
     "class": "timesig"
