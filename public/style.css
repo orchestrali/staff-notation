@@ -163,8 +163,11 @@
     font-size: 20pt;
     width: 88px;
     text-align: center;
-    padding-bottom: 10px;
+    
     z-index: 2;
+  }
+  ul#timesig-numbers li {
+    padding-bottom: 10px;
   }
   
   #message {
