@@ -104,7 +104,7 @@ $(function() {
     if (num > systems[0].staves.length) {
       $(".barlines > g").remove();
       for (let n = systems[0].staves.length+1; n <= num; n++) {
-        xml.find("staffGrp").append(`<staffDef n="${n}" lines="5" centerline="${n*100}" ></staffDef>`);
+        $(xml).find("staffGrp").append(`<staffDef n="${n}" lines="5" centerline="${n*100}" ></staffDef>`);
       }
       systems.forEach((sys,j) => {
         $("#system"+j).attr("height", (num+1)*100);
@@ -114,7 +114,7 @@ $(function() {
             staff.rect($("#system"+j+" .stafflines"), 1, centerline-21+n*10, sys.width, 3);
           }
           sys.staves.push({x: 1, centerline: centerline, things: [], notes: []});
-          xml.find('measure[n="'+(j+1)+'"]').append(`<staff n="${i+1}"><layer></layer></staff>`);
+          $(xml).find('measure[n="'+(j+1)+'"]').append(`<staff n="${i+1}"><layer></layer></staff>`);
         }
         if (num > 1 && !sys.barlines.find(o => o.x === 2)) {
           sys.barlines.push({x: 2, y: 80, stave: 0, system: j, label: "barline"});
@@ -231,9 +231,9 @@ $(function() {
       $(svg).off("mouseenter mouseleave");
       $("g").off("mouseenter mouseleave");
       $("path").off("mouseenter mouseleave");
-      if (["note1","note2","note3", "barline", "treble", "sharp", "flat", "natural", "ledger", "bass", "quarterrest", "rectrest", "eighthrest", "cclef"].includes(label) || label.startsWith("timesig")) {
+      if (["note1","note2","note3", "barline", "treble", "sharp", "flat", "natural", "ledger", "bass", "quarterrest", "rectrest", "eighthrest", "cclef", "doublesharp", "doubleflat"].includes(label) || label.startsWith("timesig")) {
         
-        $("path").attr("style", "");
+        //$("path").attr("style", "");
         $(".notes").attr("style", "stroke: black; stroke-width: 1px; fill: black; fill-rule: evenodd;");
         
         $(svg).hover(function() {
@@ -247,7 +247,7 @@ $(function() {
 
         });
       } else {
-        $("path").attr("style", "");
+        //$("path").attr("style", "");
         $(".notes").attr("style", "stroke: black; stroke-width: 1px; fill: black; fill-rule: evenodd;");
         $(svg).hover(function() {
           $(svg).css("cursor", label.startsWith("timesig") ? "crosshair" : "default");
@@ -362,7 +362,7 @@ function numsystems(e) {
         sys.barlines.push({x: 2, y: 80, stave: 0, system: i, label: "barline"});
       }
       $("#container").append(system);
-      let bar = Number(xml.find("measure:last-child").attr("n")) + 1;
+      let bar = Number($(xml).find("measure:last-child").attr("n")) + 1;
       //add system to xml as another measure
       let children = `<measure n="${bar}">`;
       systems[0].staves.forEach((s,j) => {
@@ -377,7 +377,7 @@ function numsystems(e) {
       });
       systems.push(sys);
       children += `</measure>`;
-      xml.find("section").append(children);
+      $(xml).find("section").append(children);
     }
     historyy.push({event: "change", id: "#numsystems", val: num});
   } else if (num < systems.length) {
@@ -739,7 +739,7 @@ function handleInput(e) {
                 let offset = $(e.currentTarget).offset();
                 output.y = Number(touch.pageY) - offset.top;
               }
-              if ((["note1", "note2", "note3", "rectrest", "ledger", "sharp", "flat", "natural", "cclef"].includes(label) || label.startsWith("timesig")) && output.y > 30) output.y -= 30;
+              if ((["note1", "note2", "note3", "rectrest", "ledger", "sharp", "flat", "natural", "cclef", "doublesharp", "doubleflat"].includes(label) || label.startsWith("timesig")) && output.y > 30) output.y -= 30;
             }
             break;
           case "click":
@@ -753,6 +753,7 @@ function handleInput(e) {
             break;
         }
         if (output.x) {
+          
           current = Number(e.currentTarget.id.slice(6)); //current system
           let staves = systems[current].staves.map(s => s.centerline);
           let stave = output.y < 50 ? 0 : output.y >= staves[staves.length-1]+50 ? staves.length-1 : staves.findIndex(s => output.y >= s-50 && output.y < s+50);
@@ -776,6 +777,7 @@ function handleInput(e) {
             }
           } else if (["touchend","touchcancel"].includes(e.type)) {
             if (currenttouch) {
+              console.log("ending touch");
               result = handleMove(output);
               if (result.id.startsWith("note")) {
                 let o = result.obj;
@@ -814,7 +816,7 @@ function addthings(o) {
   let parentstr = "#system"+o.system;
   if (info[o.label].parent) parentstr += info[o.label].parent;
   let staffpos = Math.round((systems[o.system].staves[o.stave].centerline - (Math.round(o.y/5)*5))/5);
-  if (["flat","sharp","natural","ledger"].includes(o.label) || o.label.startsWith("note")) o.staffpos = staffpos;
+  if (["flat","sharp","natural","ledger", "doublesharp", "doubleflat"].includes(o.label) || o.label.startsWith("note")) o.staffpos = staffpos;
   o.y = calcy(o);
   if (o.label.startsWith("timesig")) o.x += info[o.label].x;
   
@@ -915,11 +917,12 @@ function addthings(o) {
   }
   
   result.id = [o.label,o.system,o.stave,o.x,o.y].join("-");
-  if (["ledger","sharp", "natural", "flat"].includes(o.label) || (o.label.startsWith("timesig") && o.label[7] != "c")) {
+  if (["ledger","sharp", "natural", "flat", "doublesharp","doubleflat"].includes(o.label) || (o.label.startsWith("timesig") && o.label[7] != "c")) {
     parent = $(parentstr);
   } else if (info[o.label].class && ["clef", "rest", "barline", "timesig", "note"].includes(info[o.label].class)) {
     parent = staff.group($(parentstr), result.id, {class: info[o.label].class});
   }
+  
   
   //draw the thing
   if (o.label === "ledger") {
@@ -928,12 +931,10 @@ function addthings(o) {
     drawbarline(o,parent);
     
   } else {
-    let id = ["dot","sharp","flat","natural"].includes(o.label) ? result.id : null;
+    let id = ["dot","sharp","flat","natural", "doublesharp","doubleflat"].includes(o.label) ? result.id : null;
     let elem = draw(o,parent,id);
     //console.log(elem);
-    if (["dot","sharp","flat","natural"].includes(o.label)) {
-      //elem.attr("id", result.id);
-    }
+    
   }
   result.obj = o;
   return result;
@@ -1008,7 +1009,7 @@ function locknotes(lock, stave, o) {
 function calcy(o) {
   let y;
   switch (o.label) {
-    case "note1": case "note2": case "note3": case "sharp": case "flat": case "natural": case "rectrest": case "eighthrest":
+    case "note1": case "note2": case "note3": case "sharp": case "flat": case "natural": case "rectrest": case "eighthrest": case "doublesharp": case "doubleflat":
       y = Math.round(o.y/5)*5 + info[o.label].y;
       break;
     case "quarterrest":
@@ -1041,7 +1042,7 @@ function calcy(o) {
 function selectnotes(e) {
   //console.log($(e.target).parent().prop("tagName"));
   let id = $(e.target).parent().attr("id");
-  if (id.startsWith("note") && (!hasbeam || $(e.target).parents('g[id="'+hasbeam+'"]').length)) { 
+  if (["touchstart", "click"].includes(e.type) && id && id.startsWith("note") && (!hasbeam || $(e.target).parents('g[id="'+hasbeam+'"]').length)) { 
     let selected = $(e.target).attr("style").includes("blue");
     $(e.target).attr("style", selected ? "fill:black; stroke:black" : "fill:blue; stroke:blue");
     if (notestems.length === 0 && $(e.target).parents(".beam").length) hasbeam = $(e.target).parents(".beam")[0].id;
@@ -1231,6 +1232,7 @@ function handleMove(o) {
     currenttouch.info.staffpos = staffpos;
   }
   result.id = movething(currenttouch.elementid,null,y);
+  //console.log(result.id);
   //if (o.label === "ledger") alert(currenttouch.elementid + "\n" + result.id);
   result.obj = currenttouch.info;
   return result;
@@ -1390,7 +1392,7 @@ function ongoingTouchIndexById(idToFind) {
 
 function removethings(idx, num) {
   
-  $(".clef,.notes > path,.stems > path,.timesigs > text").each(function(i) {
+  $(".clef,.notes > path,.stems > path,.timesigs > g").each(function(i) {
     let s = Number(this.id.split("-")[idx]);
     if (([1,2].includes(idx) && s >= num) || ([3,4].includes(idx) && s > num)) {
       $(this).remove();

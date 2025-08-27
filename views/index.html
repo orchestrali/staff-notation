@@ -70,6 +70,8 @@
           <button type="button" id="sharp">sharp</button>
           <button type="button" id="flat">flat</button>
           <button type="button" id="natural">natural</button>
+          <button type="button" id="doublesharp">double sharp</button>
+        <button type="button" id="doubleflat">double flat</button>
           <button type="button" id="note1">solid notehead <img src="https://cdn.glitch.com/ba66e22e-49d8-46fa-abb2-cdd3790b12e6%2Fnote1.png?v=1584922134173" /></button>
           <button type="button" id="note2">
             half-note notehead <img src="https://cdn.glitch.com/ba66e22e-49d8-46fa-abb2-cdd3790b12e6%2Fnote2.png?v=1584922129671" />
@@ -107,7 +109,7 @@
           </button>
           
           <button type="button" id="select">
-            select notes to add stem/beam
+            select notes to add stem/beam/tie
           </button>
           <button type="button" id="stemup" class="disabled">
             stem up
@@ -139,23 +141,26 @@
           
         
       </div>
-      <button type="button" id="numbeams" class="has-dropdown">
-        Num beams/flags: <span>1</span>
-        <div class="dropdown">
-          <ul>
-            <li class="selected">1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-          </ul>
-        </div>
-      </button>
-      <button type="button" id="noteheadlock">
-        Notehead lock on
-      </button>
-      <button type="button" id="btnSave">
-        Save results (svg)
-      </button>
+      <div>
+        <button type="button" id="numbeams" class="has-dropdown">
+          Num beams/flags: <span>1</span>
+          <div class="dropdown">
+            <ul>
+              <li class="selected">1</li>
+              <li>2</li>
+              <li>3</li>
+              <li>4</li>
+            </ul>
+          </div>
+        </button>
+        <button type="button" id="noteheadlock">
+          Notehead lock on
+        </button>
+        <button type="button" id="btnSave">
+          Save results (svg)
+        </button>
+      </div>
+      
       <div id="container" class="hasSVG">
         <svg id="system0" class="system" width="500" height="200" xmlns="http://www.w3.org/2000/svg">
 
@@ -201,13 +206,16 @@
       
     </main>
 
-    <footer>Made with <a href="https://glitch.com">Glitch</a>!</footer>
+    <footer>Made with <a href="https://glitch.com/edit/#!/tarry-magenta-buttercup?path=README.md%3A1%3A0">Glitch</a>!</footer>
 
     <!-- include the Glitch button to show what the webpage is about and
           to make it easier for folks to view source and remix -->
     <div class="glitchButton" style="position:fixed;top:2em;right:20px;"></div>
     <div id="dialogUnderlay"></div>
     <div id="instructions" class="dialog">
+      <h4>
+        Instructions
+      </h4>
       <p>
         This website is for creating staff (music) notation in a fashion that resembles pencil and paper rather than other types of music notation software.
       </p>
@@ -221,7 +229,22 @@
         If you're on a touchscreen device, for many of these objects you can tap the staff, then drag up or down to set the position you want.
       </p>
       <p>
-        To add stems or beams, click "select notes to add stem/beam", click on the noteheads you'd like to add stems or a beam to (they should turn blue when selected), then click the button you want—stem up, stem down, stem up with flag, stem down with flag, beam above, beam below.
+        To add stems or a beam or tie, click "select notes to add stem/beam/tie", click on the noteheads you'd like to add stems or a beam/tie to (they should turn blue when selected), then click the button you want—stem up, stem down, stem up with flag, stem down with flag, beam above, beam below, tie above, tie below. Adding a beam will automatically add stems as well. If you click on the "Num beams/flags" button, you can change the number of beams or flags that will be added. If the first notehead you select already has a beam, you should only be able to select additional noteheads if they share that beam, and you will have the option to "increase beam" which adds a nested beam.
+      </p>
+      <p>
+        There is no undo button...yet! There is an eraser, right before the "select notes to add stem/beam/tie" button.
+      </p>
+      <p>
+        By default, if you add noteheads that are nearly vertically aligned on a single staff, they will snap to each other. To disable this, click "Notehead lock on" just above the staff. Click it again to enable it again.
+      </p>
+      <p>
+        Clicking "Save results (svg)" will allow you to download your creation as an svg file. This can be opened in any browser or in Adobe Illustrator for additional editing. There are many free websites that can convert an svg file to another image format such as png or to pdf.
+      </p>
+      <h4>
+        Group editing room
+      </h4>
+      <p>
+        I have set up one room where multiple people can edit the same piece of notation at the same time. Access it <a href="/group">here</a> with secret word "parsimonious".
       </p>
       <p>
         <button type="button" class="cancel">
