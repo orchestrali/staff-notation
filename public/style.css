@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Helsinki';
-    src: url('https://cdn.glitch.com/d468f5d9-e9b6-43b0-81a0-d977a9f42682%2Fhelsinki-webfont.ttf?1547180691584') format('ttf'),
-         url('https://cdn.glitch.com/d468f5d9-e9b6-43b0-81a0-d977a9f42682%2Fhelsinki-webfont.woff?1547180699345') format('woff');
+    src: url('assets/helsinki-webfont.ttf') format('ttf'),
+         url('assets/helsinki-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
